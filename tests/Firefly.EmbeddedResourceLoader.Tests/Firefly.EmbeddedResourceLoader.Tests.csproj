@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources2\AmbiguousResource.txt" />
+    <None Remove="Resources\AmbiguousResource.txt" />
+    <None Remove="Resources\Array.json" />
+    <None Remove="Resources\Array.yaml" />
+    <None Remove="Resources\C_Sharp1.png" />
+    <None Remove="Resources\Object.json" />
+    <None Remove="Resources\Object.yaml" />
+    <None Remove="Resources\TestResource1.txt" />
+    <None Remove="Resources\XmlTestData.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources2\AmbiguousResource.txt" />
+    <EmbeddedResource Include="Resources\AmbiguousResource.txt" />
+    <EmbeddedResource Include="Resources\Array.json" />
+    <EmbeddedResource Include="Resources\Array.yaml" />
+    <EmbeddedResource Include="Resources\C_Sharp1.png" />
+    <EmbeddedResource Include="Resources\Object.json" />
+    <EmbeddedResource Include="Resources\Object.yaml" />
+    <EmbeddedResource Include="Resources\TestResource1.txt" />
+    <EmbeddedResource Include="Resources\XmlTestData.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="YamlDotNet" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Firefly.EmbeddedResourceLoader\Firefly.EmbeddedResourceLoader.csproj" />
+  </ItemGroup>
+
+</Project>
