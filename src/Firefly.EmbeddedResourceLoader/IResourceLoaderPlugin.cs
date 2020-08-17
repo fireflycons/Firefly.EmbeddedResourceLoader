@@ -25,7 +25,7 @@
 
         /// <summary>
         /// <para>
-        /// Called to construct the type.
+        /// Called to construct the type. An implementation of this interface should construct an object of the given <see cref="Type"/>, load the embedded resource and return the object.
         /// </para>
         /// </summary>
         /// <param name="resourceData">The resource data. This will be a <see cref="string"/> or a <see cref="System.IO.Stream"/> depending on the value of <see cref="ResourceFormat"/></param>

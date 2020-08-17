@@ -15,7 +15,7 @@
     /// it loads up all the fields and properties with the indicated embedded resources.
     /// </para>
     /// <para>
-    /// Resources are only loaded into members that have not previously been initialized (i.e are NULL).
+    /// Resources are only loaded into members that have not previously been initialized (i.e are <c>null</c>).
     /// This also has the beneficial side effect of ensuring that static members are only ever loaded once, which
     /// is when the first instance of the containing type is presented.
     /// </para>
@@ -24,13 +24,19 @@
     /// The load process works by looking for an appropriate way of initializing the member in the following order...
     /// <list type="number">
     /// <item>
-    /// <description>Look for a constructor of the member's type that takes a single argument of <see cref="Stream"/>. Good for many binary types like images and so forth.</description>
-    /// </item>
-    /// <item>
     /// <description>If the member is a string, then read the resource as a string and assign it directly.</description>
     /// </item>
     /// <item>
-    /// <description>Look for a public static Load method taking a single argument of <see cref="Stream"/>, e.g. <see cref="System.Xml.Linq.XDocument"/>.</description>
+    /// <description>Look for a constructor of the member's type that takes a single argument of <see cref="Stream"/>. Good for many binary types like images and so forth.</description>
+    /// </item>
+    /// <item>
+    /// <description>Look for a public static or instance Load method taking a single argument of type <see cref="Stream"/> or <see cref="StreamReader"/>, e.g. <see cref="System.Xml.Linq.XDocument"/>.</description>
+    /// </item>
+    /// <item>
+    /// <description>Look for a public static Parse method taking a single argument of type <see cref="string"/>, e.g. <c>Newtonsoft.Json.Linq.JObject</c>.</description>
+    /// </item>
+    /// <item>
+    /// <description>Search registered plugins for a plugin that supports the <see cref="System.Type"/> of the field or property.</description>
     /// </item>
     /// <item>
     /// <description>Throw an exception.</description>
@@ -88,7 +94,7 @@
         private static readonly List<IResourceLoaderPlugin> RegisteredPlugins = new List<IResourceLoaderPlugin>();
 
         /// <summary>
-        /// Gets the resource stream.
+        /// Gets the manifest resource stream for the given resource.
         /// </summary>
         /// <param name="partialResourcePath">Partial (trailing) path to embedded resource.</param>
         /// <param name="containingAssembly">
@@ -133,7 +139,7 @@
         /// <summary>
         /// Reads the resource stream into a string.
         /// </summary>
-        /// <param name="resourceStream">The resource stream returned by <see cref="ResourceLoader.GetResourceStream{string, Assembly}"/>.</param>
+        /// <param name="resourceStream">The resource stream returned by <see cref="ResourceLoader.GetResourceStream(string, Assembly)"/>.</param>
         /// <returns>String containing resource data.</returns>
         public static object GetStringResource(Stream resourceStream)
         {
