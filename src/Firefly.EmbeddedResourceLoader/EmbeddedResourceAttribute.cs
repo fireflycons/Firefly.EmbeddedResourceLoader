@@ -59,7 +59,7 @@
         /// <param name="containingAssembly">The assembly that contains the resource.</param>
         public EmbeddedResourceAttribute(string resourcePath, Assembly containingAssembly)
         {
-            this.ContainingAssembly = containingAssembly ?? Assembly.GetCallingAssembly();
+            this.ContainingAssembly = containingAssembly; // ?? Assembly.GetCallingAssembly();
             this.ResourcePath = resourcePath;   
         }
 

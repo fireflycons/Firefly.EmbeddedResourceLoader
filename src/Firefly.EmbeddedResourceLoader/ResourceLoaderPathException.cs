@@ -33,12 +33,12 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceLoaderPathException"/> class.
         /// </summary>
-        /// <param name="resourceAttribute">
-        /// The resource attribute.
-        /// </param>
-        protected ResourceLoaderPathException(EmbeddedResourceAttribute resourceAttribute)
+        /// <param name="resourcePath">The resource path.</param>
+        /// <param name="containingAssembly">The containing assembly.</param>
+        protected ResourceLoaderPathException(string resourcePath, Assembly containingAssembly)
         {
-            this.ResourceAttribute = resourceAttribute;
+            this.ResourcePath = resourcePath;
+            this.ResourceLocation = containingAssembly;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@
         /// <value>
         ///     The resource location.
         /// </value>
-        public Assembly ResourceLocation => this.ResourceAttribute?.ContainingAssembly;
+        public Assembly ResourceLocation { get; }
 
         /// <summary>
         ///     Gets the resource path as entered in the attribute's constructor.
@@ -87,16 +87,7 @@
         /// <value>
         ///     The resource path.
         /// </value>
-        public string ResourcePath => this.ResourceAttribute?.ResourcePath;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the resource attribute.
-        /// </summary>
-        protected EmbeddedResourceAttribute ResourceAttribute { get; set; }
+        public string ResourcePath { get; }
 
         #endregion
     }

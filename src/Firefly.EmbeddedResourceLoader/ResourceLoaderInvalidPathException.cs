@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.Reflection;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -22,11 +23,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceLoaderInvalidPathException"/> class.
         /// </summary>
-        /// <param name="resourceLocation">
-        /// The resource location.
-        /// </param>
-        public ResourceLoaderInvalidPathException(EmbeddedResourceAttribute resourceLocation)
-            : base(resourceLocation)
+        /// <param name="resourcePath">The resource path.</param>
+        /// <param name="containingAssembly">The containing assembly.</param>
+        public ResourceLoaderInvalidPathException(string resourcePath, Assembly containingAssembly)
+            : base(resourcePath, containingAssembly)
         {
         }
 
@@ -83,13 +83,13 @@
         {
             get
             {
-                if (this.ResourceAttribute != null)
+                if (this.ResourcePath != null)
                 {
                     return string.Format(
                         CultureInfo.CurrentCulture, 
                         "Unable to load '{0}' from '{1}'. Did you set it to Embedded Resource?", 
-                        this.ResourceAttribute.ResourcePath, 
-                        this.ResourceAttribute.ContainingAssembly.FullName);
+                        this.ResourcePath, 
+                        this.ResourceLocation?.FullName);
                 }
 
                 return base.Message;

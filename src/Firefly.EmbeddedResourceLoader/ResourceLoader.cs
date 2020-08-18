@@ -115,22 +115,19 @@
 
             if (!availableResources.Any())
             {
-                throw new ResourceLoaderInvalidPathException(
-                    new EmbeddedResourceAttribute(partialResourcePath, containingAssembly));
+                throw new ResourceLoaderInvalidPathException(partialResourcePath, containingAssembly);
             }
 
             if (availableResources.Length > 1)
             {
-                throw new ResourceLoaderAmbiguousPathException(
-                    new EmbeddedResourceAttribute(partialResourcePath, containingAssembly));
+                throw new ResourceLoaderAmbiguousPathException(partialResourcePath, containingAssembly);
             }
 
             var resourceStream = containingAssembly.GetManifestResourceStream(availableResources.First());
 
             if (resourceStream == null)
             {
-                throw new ResourceLoaderInvalidPathException(
-                    new EmbeddedResourceAttribute(partialResourcePath, containingAssembly));
+                throw new ResourceLoaderInvalidPathException(partialResourcePath, containingAssembly);
             }
 
             return resourceStream;
