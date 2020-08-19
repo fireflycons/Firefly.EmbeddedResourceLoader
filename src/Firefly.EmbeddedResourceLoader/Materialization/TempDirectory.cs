@@ -1,4 +1,4 @@
-﻿namespace Firefly.EmbeddedResourceLoader
+﻿namespace Firefly.EmbeddedResourceLoader.Materialization
 {
     using System;
     using System.Collections.Generic;

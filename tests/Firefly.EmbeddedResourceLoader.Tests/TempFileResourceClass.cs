@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Firefly.EmbeddedResourceLoader.Materialization;
+
     public class TempFileResourceClass : IDisposable
     {
         [EmbeddedResource("Resources.TestResource1.txt")]

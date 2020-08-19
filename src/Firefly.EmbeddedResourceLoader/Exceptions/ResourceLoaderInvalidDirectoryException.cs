@@ -5,6 +5,8 @@
     using System.Reflection;
     using System.Runtime.Serialization;
 
+    using Firefly.EmbeddedResourceLoader.Materialization;
+
     /// <summary>
     /// Thrown if an attempt to initialize a <see cref="TempDirectory"/> does not yield any resources.
     /// </summary>

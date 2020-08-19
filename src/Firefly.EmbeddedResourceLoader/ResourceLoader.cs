@@ -9,6 +9,7 @@
     using System.Reflection;
 
     using Firefly.EmbeddedResourceLoader.Exceptions;
+    using Firefly.EmbeddedResourceLoader.Materialization;
 
     /// <summary>
     /// <para>

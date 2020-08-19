@@ -2,6 +2,8 @@
 {
     using System.IO;
 
+    using Firefly.EmbeddedResourceLoader.Materialization;
+
     using FluentAssertions;
 
     using Xunit;
