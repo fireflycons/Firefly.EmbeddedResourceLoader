@@ -1,5 +1,6 @@
 # Firefly.EmbeddedResourceLoader
 
+[![Build status](https://ci.appveyor.com/api/projects/status/9faegqir2x2mtccx/branch/master?svg=true)](https://ci.appveyor.com/project/fireflycons/firefly-embeddedresourceloader/branch/master)
 
 ## About
 
@@ -73,3 +74,7 @@ public static class StaticResourceLoadedClass
 
 ResourceLoader.LoadResources(typeof(StaticResourceLoadedClass));
 ```
+
+# API Documentation and Further Examples
+
+This can be found on the [documentstion site](https://fireflycons.github.io/Firefly-EmbeddedResourceLoader)
