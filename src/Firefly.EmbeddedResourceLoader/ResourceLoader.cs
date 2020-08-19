@@ -33,10 +33,13 @@
     /// <description>Look for a constructor of the member's type that takes a single argument of <see cref="Stream"/>. Good for many binary types like images and so forth.</description>
     /// </item>
     /// <item>
-    /// <description>Look for a public static or instance Load method taking a single argument of type <see cref="Stream"/> or <see cref="StreamReader"/>, e.g. <see cref="System.Xml.Linq.XDocument"/>.</description>
+    /// <description>
+    /// Look for a public static or instance Load method taking a single argument of type <see cref="Stream"/> or <see cref="StreamReader"/>, e.g. <see cref="System.Xml.Linq.XDocument"/>
+    /// or <see href="https://github.com/aaubry/YamlDotNet/blob/master/YamlDotNet/RepresentationModel/YamlStream.cs">YamlStream</see>
+    /// </description>
     /// </item>
     /// <item>
-    /// <description>Look for a public static Parse method taking a single argument of type <see cref="string"/>, e.g. <c>Newtonsoft.Json.Linq.JObject</c>.</description>
+    /// <description>Look for a public static Parse method taking a single argument of type <see cref="string"/>, e.g. <see href="https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Linq_JObject.htm">JObject</see>.</description>
     /// </item>
     /// <item>
     /// <description>Search registered plugins for a plugin that supports the <see cref="System.Type"/> of the field or property.</description>

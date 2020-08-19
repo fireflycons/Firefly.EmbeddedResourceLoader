@@ -24,12 +24,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the path to the temporary file.
+        /// Gets the full path to the temporary file.
         /// </summary>
         /// <value>
         /// The path.
         /// </value>
-        public string FullPath { get; set; }
+        public string FullPath { get; }
 
         /// <summary>
         /// Removes the temporary file.

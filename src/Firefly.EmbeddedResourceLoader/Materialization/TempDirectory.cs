@@ -75,7 +75,7 @@
         public string FullPath { get; }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// Removes the temporary directory and all its content.
         /// </summary>
         public void Dispose()
         {

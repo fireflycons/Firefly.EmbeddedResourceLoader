@@ -67,7 +67,7 @@
         /// Gets the containing assembly, that is, the assembly that is expected to contain the embedded resource.
         /// </summary>
         /// <value>
-        /// The containing assembly.
+        /// The containing assembly. If <c>null</c> then resource is assumed to be contained within the assembly containing the declaration of the decorated class.
         /// </value>
         public Assembly ContainingAssembly { get; internal set; }
 
