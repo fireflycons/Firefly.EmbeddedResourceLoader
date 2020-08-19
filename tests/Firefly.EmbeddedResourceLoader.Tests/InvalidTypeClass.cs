@@ -1,6 +1,8 @@
 ﻿namespace Firefly.EmbeddedResourceLoader.Tests
 {
-    #pragma warning disable 169
+    using Firefly.EmbeddedResourceLoader.Exceptions;
+
+#pragma warning disable 169
 
     /// <summary>
     /// Asserts that a class that isn't directly supported by the resource loader

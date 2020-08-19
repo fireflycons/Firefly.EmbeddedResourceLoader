@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Firefly.EmbeddedResourceLoader.Exceptions;
+
     using FluentAssertions;
 
     using Xunit;

@@ -1,4 +1,4 @@
-﻿namespace Firefly.EmbeddedResourceLoader
+﻿namespace Firefly.EmbeddedResourceLoader.Exceptions
 {
     using System;
     using System.Reflection;

@@ -1,6 +1,8 @@
 ﻿namespace Firefly.EmbeddedResourceLoader.Tests
 {
-    #pragma warning disable 169
+    using Firefly.EmbeddedResourceLoader.Exceptions;
+
+#pragma warning disable 169
 
     /// <summary>
     /// Class to demonstrate <see cref="ResourceLoaderAmbiguousPathException"/> is thrown when the resource path is ambiguous

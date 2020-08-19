@@ -8,6 +8,8 @@
     using System.Linq;
     using System.Reflection;
 
+    using Firefly.EmbeddedResourceLoader.Exceptions;
+
     /// <summary>
     /// <para>
     /// This class does all the magic.
@@ -401,7 +403,7 @@
         /// <param name="resourceAttribute">The attribute which describes where to find the resource.</param>
         /// <returns>Object of the requested type loaded with the data from the resource.</returns>
         /// <exception cref="ResourceLoaderInvalidTypeException">The member is of a type not supported by this library.</exception>
-        /// <exception cref="EmbeddedResourceLoader.ResourceLoaderException">The requested resource could not be found. Either incorrect path or not marked as embedded resource.</exception>
+        /// <exception cref="ResourceLoaderException">The requested resource could not be found. Either incorrect path or not marked as embedded resource.</exception>
         private static object GetResource(Type targetMemberType, EmbeddedResourceAttribute resourceAttribute)
         {
             var resourceStream = GetResourceStream(resourceAttribute);

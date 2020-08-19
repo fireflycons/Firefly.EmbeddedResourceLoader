@@ -1,4 +1,4 @@
-﻿namespace Firefly.EmbeddedResourceLoader
+﻿namespace Firefly.EmbeddedResourceLoader.Exceptions
 {
     using System;
     using System.Globalization;
@@ -8,7 +8,7 @@
     /// <summary>
     /// Thrown if an attempt to initialize a <see cref="TempDirectory"/> does not yield any resources.
     /// </summary>
-    /// <seealso cref="Firefly.EmbeddedResourceLoader.ResourceLoaderPathException" />
+    /// <seealso cref="ResourceLoaderPathException" />
     [Serializable]
     public class ResourceLoaderInvalidDirectoryException : ResourceLoaderPathException
     {
