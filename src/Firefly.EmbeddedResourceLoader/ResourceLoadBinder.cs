@@ -1,5 +1,7 @@
 ﻿namespace Firefly.EmbeddedResourceLoader
 {
+    #pragma warning disable 1584
+
     using System;
     using System.Globalization;
     using System.Reflection;
