@@ -70,7 +70,7 @@
         /// Gets the full path to the temporary directory.
         /// </summary>
         /// <value>
-        /// The full path.
+        /// The full path to the temporary directory.
         /// </value>
         public string FullPath { get; }
 

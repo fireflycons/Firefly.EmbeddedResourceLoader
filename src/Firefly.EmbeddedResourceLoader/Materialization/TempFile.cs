@@ -27,7 +27,7 @@
         /// Gets the full path to the temporary file.
         /// </summary>
         /// <value>
-        /// The path.
+        /// The full path to the temporary file
         /// </value>
         public string FullPath { get; }
 
