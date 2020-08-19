@@ -280,13 +280,36 @@
                     if (member.IsReadOnly)
                     {
                         throw new ResourceLoaderReadOnlyException(
-                            string.Format(CultureInfo.CurrentCulture, "{0} does not have a set accessor", member));
+                            string.Format(CultureInfo.CurrentCulture, "{0} does not have a set accessor or is readonly.", member));
                     }
 
                     // Only load fields if uninitialized (null)
                     if (member.IsInitialized)
                     {
-                        return;
+                        continue;
+                    }
+
+                    // Handle TempDirectory as a special case since we cannot get resource data for a resource 'directory'
+                    if (member.TargetType == typeof(TempDirectory))
+                    {
+                        var allResources = t.Assembly.GetManifestResourceNames();
+
+                        // Check we actually have a resource 'directory'
+                        var dir = attr.ResourcePath.TrimEnd('.') + '.';
+                        var resourcesInScope =
+                            allResources.Where(r => r.Contains(dir)).ToList();
+
+                        if (!resourcesInScope.Any())
+                        {
+                            throw new ResourceLoaderInvalidDirectoryException(attr.ResourcePath, t.Assembly);
+                        }
+
+                        var resourceFullPath = new string(
+                            resourcesInScope.First().Substring(0, resourcesInScope.Min(s => s.Length))
+                                .TakeWhile((c, i) => resourcesInScope.All(s => s[i] == c)).ToArray());
+
+                        member.SetValue(new TempDirectory(t.Assembly, resourceFullPath, allResources.Where(r => r.StartsWith(resourceFullPath))));
+                        continue;
                     }
 
                     var resourceData = GetResource(member.TargetType, attr);
@@ -334,17 +357,11 @@
         /// Gets the embedded resource attribute.
         /// </summary>
         /// <param name="member">The member.</param>
-        /// <returns>Instance of the attribute, or NULL if it was not present on the member.</returns>
+        /// <returns>Instance of the attribute, or <c>null</c> if it was not present on the member.</returns>
         private static EmbeddedResourceAttribute GetEmbeddedResourceAttribute(ICustomAttributeProvider member)
         {
-            var attrs = member.GetCustomAttributes(typeof(EmbeddedResourceAttribute), false);
-
-            if (attrs.Length > 0)
-            {
-                return (EmbeddedResourceAttribute)attrs[0];
-            }
-
-            return null;
+            return (EmbeddedResourceAttribute)member.GetCustomAttributes(typeof(EmbeddedResourceAttribute), false)
+                .FirstOrDefault();
         }
 
         /// <summary>

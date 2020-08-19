@@ -10,9 +10,14 @@
         [EmbeddedResource("Resources.TestResource1.txt")]
         public string ResourceContent { get; set; }
 
+        [EmbeddedResource("Resources")]
+        public TempDirectory TempDirectory { get; set; }
+
+
         public void Dispose()
         {
             this.FileResource?.Dispose();
+            this.TempDirectory?.Dispose();
         }
     }
 }
