@@ -2,6 +2,8 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9faegqir2x2mtccx/branch/master?svg=true)](https://ci.appveyor.com/project/fireflycons/firefly-embeddedresourceloader/branch/master)
 
+![Nuget](https://img.shields.io/nuget/v/Firefly.EmbeddedResourceLoader)
+
 ## About
 
 Yet another library for managing embedded resources? Well yes, however this one does it using attributes.
