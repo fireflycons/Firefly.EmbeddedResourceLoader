@@ -19,7 +19,7 @@ Out of the box the following can easily be initialized
 * Stream loaded types - Any object that has a static or instance `Load` method taking a single argument of type `Stream` or `StreamReader`, e.g. `XDocument` or `YamlDotNet.RepresentationModel.YamlStream`
 * Parse types - Any object that has a static `Parse` method taking a single argument of type `string`, e.g. `Newtonsoft.Json.Linq.JObject` or `Newtonsoft.Json.Linq.JArray`
 
-There is also a plugin system discussed in more detail in the documentation that allows you to define how an object of any type not covered by the above can be loaded with embedded resource data.
+There is also a plugin system discussed in more detail in the [documentation](https://fireflycons.github.io/Firefly-EmbeddedResourceLoader/articles/plugins.html) that allows you to define how an object of any type not covered by the above can be loaded with embedded resource data.
 
 ## Examples
 
@@ -85,4 +85,4 @@ You can see this library in action in the unit test projects in my other reposit
 
 # API Documentation and Further Examples
 
-This can be found on the [documentstion site](https://fireflycons.github.io/Firefly-EmbeddedResourceLoader)
+This can be found on the [documentation site](https://fireflycons.github.io/Firefly-EmbeddedResourceLoader)
