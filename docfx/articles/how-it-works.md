@@ -34,6 +34,14 @@ If on the other hand you had two resource folders `Resources1` and `Resources2`,
     public string MyProperty {get; set; }
 ```
 
+# Examples in Other Repositories
+
+You can see this library in action in the unit test projects in my other repositories
+
+* [Firefly.CloudFormation](https://github.com/fireflycons/Firefly.CloudFormation/tree/master/tests/Firefly.CloudFormation.Tests.Unit)
+* [PSCloudFomation](https://github.com/fireflycons/PSCloudFormation/tree/master/tests/Firefly.PSCloudFormation.Tests.Unit)
+
 ## Remarks
 
 Note that creating classes with members that are initialized using the [EmbeddedResource](xref:Firefly.EmbeddedResourceLoader.EmbeddedResourceAttribute) attribute and are therefore never directly assigned will generate a lot of compiler warnings. You can get rid of most of these by disabling warning `169` and `649` using `#pragme warning disable`
+

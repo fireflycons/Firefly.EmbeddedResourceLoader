@@ -75,6 +75,14 @@ public static class StaticResourceLoadedClass
 ResourceLoader.LoadResources(typeof(StaticResourceLoadedClass));
 ```
 
+# Examples in Other Repositories
+
+You can see this library in action in the unit test projects in my other repositories
+
+* [Firefly.CloudFormation](https://github.com/fireflycons/Firefly.CloudFormation/tree/master/tests/Firefly.CloudFormation.Tests.Unit)
+* [PSCloudFomation](https://github.com/fireflycons/PSCloudFormation/tree/master/tests/Firefly.PSCloudFormation.Tests.Unit)
+
+
 # API Documentation and Further Examples
 
 This can be found on the [documentstion site](https://fireflycons.github.io/Firefly-EmbeddedResourceLoader)
