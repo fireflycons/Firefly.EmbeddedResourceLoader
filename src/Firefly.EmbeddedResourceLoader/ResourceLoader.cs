@@ -310,10 +310,9 @@
                             throw new ResourceLoaderInvalidDirectoryException(attr.ResourcePath, t.Assembly);
                         }
 
-                        var resourceFullPath = new string(
-                            resourcesInScope.First().Substring(0, resourcesInScope.Min(s => s.Length))
-                                .TakeWhile((c, i) => resourcesInScope.All(s => s[i] == c)).ToArray());
-
+                        var ind = resourcesInScope.First().LastIndexOf(dir, StringComparison.Ordinal);
+                        var resourceFullPath = resourcesInScope.First().Substring(0, ind + dir.Length);
+                        
                         member.SetValue(new TempDirectory(t.Assembly, resourceFullPath, allResources.Where(r => r.StartsWith(resourceFullPath))));
                         continue;
                     }

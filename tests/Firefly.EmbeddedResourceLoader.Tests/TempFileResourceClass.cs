@@ -12,7 +12,7 @@
         [EmbeddedResource("Resources.TestResource1.txt")]
         public string ResourceContent { get; set; }
 
-        [EmbeddedResource("Resources")]
+        [EmbeddedResource("TempDirectory")]
         public TempDirectory TempDirectory { get; set; }
 
 

@@ -1,6 +1,7 @@
 ﻿namespace Firefly.EmbeddedResourceLoader.Tests
 {
     using System.IO;
+    using System.Linq;
 
     using Firefly.EmbeddedResourceLoader.Materialization;
 
@@ -36,12 +37,16 @@
 
         /// <summary>
         /// Test that a collection of resources identified by a partial manifest path are extracted to a directory.
+        /// Also tests for bug in Issue #1
         /// </summary>
         [Fact]
         public void ShouldMaterializeTempDirectoryContainingResources()
         {
             Directory.Exists(this.fixture.Resources.TempDirectory.FullPath).Should().BeTrue();
-            Directory.GetFiles(this.fixture.Resources.TempDirectory.FullPath).Should().HaveCountGreaterThan(0);
+            var files = Directory.GetFiles(this.fixture.Resources.TempDirectory.FullPath);
+
+            files.Should().HaveCount(2);
+            files.Select(Path.GetFileName).Should().Contain(new[] { "test.json", "test.yaml" });
         }
     }
 }
