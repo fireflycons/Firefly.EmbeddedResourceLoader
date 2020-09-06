@@ -48,5 +48,26 @@
             files.Should().HaveCount(2);
             files.Select(Path.GetFileName).Should().Contain(new[] { "test.json", "test.yaml" });
         }
+
+        /// <summary>
+        /// Verifies a nasty behaviour where <c>directory-name</c> is materialized as <c>directory_name</c>.
+        /// Seems that's how the embedded resource manifest sees it.
+        /// </summary>
+        [Fact]
+        public void ShouldMaterializeDirectoryNameWithHyphenConvertedToUnderscore()
+        {
+            Directory.Exists(Path.Combine(this.fixture.Resources.HyphenatedDirectory.FullPath, "hyphenated_directory"))
+                .Should().BeTrue();
+        }
+
+        /// <summary>
+        /// Verify that using a rename list on the attribute correctly materializes the directory.
+        /// </summary>
+        [Fact]
+        public void ShouldMaterializeDirectoryNameWithHyphenCorrectlyWhenRenamePresentOnAttribute()
+        {
+            Directory.Exists(Path.Combine(this.fixture.Resources.HyphenatedDirectoryWithRename.FullPath, "hyphenated-directory"))
+                .Should().BeTrue();
+        }
     }
 }

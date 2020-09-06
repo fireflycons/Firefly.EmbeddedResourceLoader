@@ -41,7 +41,8 @@
         /// <param name="containingAssembly">The assembly containing the embedded resources.</param>
         /// <param name="resourcePathPrefix">Resource path prefix of resources to materialize. All resources with this prefix in their names will be extracted.</param>
         /// <param name="resources">The resources to materialize.</param>
-        internal TempDirectory(Assembly containingAssembly, string resourcePathPrefix, IEnumerable<string> resources)
+        /// <param name="directoryRenames">Array of renames for directories in resource path.</param>
+        internal TempDirectory(Assembly containingAssembly, string resourcePathPrefix, IEnumerable<string> resources, string[] directoryRenames)
             : this()
         {
             var index = resourcePathPrefix.Length;
@@ -49,7 +50,7 @@
             foreach (var resource in resources)
             {
                 // Caveat! Expect all resource files to have a file extension.
-                var filePath = Path.Combine(this.FullPath, ResourceNameToFilePath(resource.Substring(index)));
+                var filePath = Path.Combine(this.FullPath, ResourceNameToFilePath(resource.Substring(index), directoryRenames));
                 var fileDirectory = Path.GetDirectoryName(filePath);
 
                 if (!Directory.Exists(fileDirectory))
@@ -96,10 +97,36 @@
         /// Convert a resource name to a file system path.
         /// </summary>
         /// <param name="resource">The resource.</param>
+        /// <param name="directoryRenames">Array of renames for directories in resource path.</param>
         /// <returns>File system path relative to the temporary directory</returns>
-        private static string ResourceNameToFilePath(string resource)
+        private static string ResourceNameToFilePath(string resource, string[] directoryRenames)
         {
-            var parts = resource.Split('.').Reverse().ToList();
+            var parts = resource.Split('.').Reverse().ToArray();
+
+            if (directoryRenames != null && directoryRenames.Any())
+            {
+                if (directoryRenames.Length % 2 != 0)
+                {
+                    throw new ArgumentException("DirectoryRenames property of EmbeddedResouceAttribute must have an even number of elements");
+                }
+
+                // While we have the resource name split to parts
+                // First two parts or resource are file.ext 
+                var sourceRenames = directoryRenames.TakeEvery(2).ToArray();
+                var targetRenames = directoryRenames.TakeEvery(2, 1).ToArray();
+
+                for (var partIndex = 2; partIndex < parts.Length; ++partIndex)
+                {
+                    for (var renameIndex = 0; renameIndex < sourceRenames.Length; ++renameIndex)
+                    {
+                        if (parts[partIndex] == sourceRenames[renameIndex])
+                        {
+                            parts[partIndex] = targetRenames[renameIndex];
+                        }
+                    }
+                }
+            }
+
             return string.Join(Path.DirectorySeparatorChar.ToString(), parts.Skip(1).Reverse()) + "." + parts.First();
         }
     }

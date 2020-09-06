@@ -1,7 +1,10 @@
 ﻿namespace Firefly.EmbeddedResourceLoader
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
+
+    using Firefly.EmbeddedResourceLoader.Materialization;
 
     /// <summary>
     /// <para>
@@ -62,6 +65,20 @@
             this.ContainingAssembly = containingAssembly; // ?? Assembly.GetCallingAssembly();
             this.ResourcePath = resourcePath;   
         }
+
+        /// <summary>
+        /// <para>
+        /// Gets or sets directory renames for the <see cref="TempDirectory"/> resource.
+        /// When embedding resources, the compiler changes all hyphens in directory names to underscores which means the materialized directory structure is incorrect
+        /// </para>
+        /// <para>
+        /// Due to the fact that attribute constructors can only accept simple types, this property must be a string array rather than the more suitable <see cref="Dictionary{String,String}"/>
+        /// </para>
+        /// </summary>
+        /// <value>
+        /// Must be an array with an even number of elements, where every pair of elements specifies a name and a new name for the preceding element.
+        /// </value>
+        public string[] DirectoryRenames { get; set; }
 
         /// <summary>
         /// Gets the containing assembly, that is, the assembly that is expected to contain the embedded resource.

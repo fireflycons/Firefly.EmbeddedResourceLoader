@@ -313,7 +313,7 @@
                         var ind = resourcesInScope.First().LastIndexOf(dir, StringComparison.Ordinal);
                         var resourceFullPath = resourcesInScope.First().Substring(0, ind + dir.Length);
                         
-                        member.SetValue(new TempDirectory(t.Assembly, resourceFullPath, allResources.Where(r => r.StartsWith(resourceFullPath))));
+                        member.SetValue(new TempDirectory(t.Assembly, resourceFullPath, allResources.Where(r => r.StartsWith(resourceFullPath)), attr.DirectoryRenames));
                         continue;
                     }
 

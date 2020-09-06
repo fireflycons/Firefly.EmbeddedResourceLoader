@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,6 +16,7 @@
     <None Remove="Resources\Object.yaml" />
     <None Remove="Resources\TestResource1.txt" />
     <None Remove="Resources\XmlTestData.xml" />
+    <None Remove="TempDirectoryWithHyphen\hyphenated-directory\placeholder.txt" />
     <None Remove="TempDirectory\test.json" />
     <None Remove="TempDirectory\test.yaml" />
   </ItemGroup>
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Resources\Object.yaml" />
     <EmbeddedResource Include="Resources\TestResource1.txt" />
     <EmbeddedResource Include="Resources\XmlTestData.xml" />
+    <EmbeddedResource Include="TempDirectoryWithHyphen\hyphenated-directory\placeholder.txt" />
     <EmbeddedResource Include="TempDirectory\test.json" />
     <EmbeddedResource Include="TempDirectory\test.yaml" />
   </ItemGroup>
