@@ -16,8 +16,15 @@
     /// is impossible to programmatically determine whether the last dot in a resource name is a directory
     /// separator or a file extension. The assumption used here is that it is a file extension.
     /// </para>
+    /// <para>
+    /// The compiler has a nasty trick when embedding folders into the resource manifest.
+    /// These folders are effectively namespace names when committed to the assembly resource manifest and as such must confirm to .NET lexical structure rules for identifiers.
+    /// All invalid characters as per this specification are replaced with underscore, and if the first character of the folder name is invalid,
+    /// then an underscore is prefixed to the folder name.
+    /// </para>
     /// </summary>
     /// <seealso cref="System.IDisposable" />
+    /// <seealso href="https://fireflycons.github.io/Firefly-EmbeddedResourceLoader/articles/materializers.html#tempdirectory">Notes on using TempDirectory</seealso>
     public class TempDirectory : IDisposable
     {
         /// <summary>
@@ -111,7 +118,7 @@
                 }
 
                 // While we have the resource name split to parts
-                // First two parts or resource are file.ext 
+                // First two parts or resource are file.ext
                 var sourceRenames = directoryRenames.TakeEvery(2).ToArray();
                 var targetRenames = directoryRenames.TakeEvery(2, 1).ToArray();
 

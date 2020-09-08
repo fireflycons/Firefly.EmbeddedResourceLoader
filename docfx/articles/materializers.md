@@ -46,7 +46,7 @@ public class MyResourceClass : IDisposable
 
 ### Caveats with TempDirectory
 
-The compiler has a nasty trick when embedding folders into the resource manifest. It converts hyphens in directory names to underscores meaning that when the directory structure is materialized you don't get what you expect. I expect this is to do with what consitutes valid characters for a .NET namespace name, thus any invalid character in a resource folder name is going to be replaced.
+The compiler has a nasty trick when embedding folders into the resource manifest. These folders are effectively namespace names when committed to the assembly resource manifest and as such must confirm to [.NET lexical structure rules for identifiers](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#identifiers). All invalid characters as per this specification are replaced with underscore, and if the first character of the folder name is invalid, then an underscore is prefixed to the folder name.
 
 To work around this, there is a property `DirectoryRenames` on [EmbeddedResource](xref:Firefly.EmbeddedResourceLoader.EmbeddedResourceAttribute) that allows you to specify renames for directories that are being materialized.
 
