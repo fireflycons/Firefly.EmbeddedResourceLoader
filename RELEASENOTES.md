@@ -1,3 +1,8 @@
+# 0.1.3
+
+* Enhancement - TempFile and TempDirectory should have string casts, so they can be used directly in mathods that take a string path (e.g.System.IO).
+* Enhancement - TempFile should have option to preserve file extension.
+
 # 0.1.2
 
 * Fix issue with directory materialization for `TempDirectory` resource. Characters in the resource folder names that are not valid for .NET namespaces are replaced by the compiler with underscores. A property has been added to `EmbeddedResource` attribute to permit renaming of these back to what they should be upon materialization.
