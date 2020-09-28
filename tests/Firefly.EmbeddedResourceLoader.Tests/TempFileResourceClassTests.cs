@@ -69,5 +69,33 @@
             Directory.Exists(Path.Combine(this.fixture.Resources.HyphenatedDirectoryWithRename.FullPath, "hyphenated-directory"))
                 .Should().BeTrue();
         }
+
+        /// <summary>
+        /// Verifies a TempFile can be used like a string, e.g. for IO operations taking path.
+        /// </summary>
+        [Fact]
+        public void TempFileShouldCastToStringAndResultInPathToFile()
+        {
+            string GetAsString(string tempFile)
+            {
+                return tempFile;
+            }
+
+            GetAsString(this.fixture.Resources.FileResource).Should().Be(this.fixture.Resources.FileResource.FullPath);
+        }
+
+        /// <summary>
+        /// Verifies a TempFile can be used like a string, e.g. for IO operations taking path.
+        /// </summary>
+        [Fact]
+        public void TempDirectoryShouldCastToStringAndResultInPathToDirectory()
+        {
+            string GetAsString(string tempDirectory)
+            {
+                return tempDirectory;
+            }
+
+            GetAsString(this.fixture.Resources.TempDirectory).Should().Be(this.fixture.Resources.TempDirectory.FullPath);
+        }
     }
 }

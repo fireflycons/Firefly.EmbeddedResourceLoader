@@ -32,6 +32,18 @@
         public string FullPath { get; }
 
         /// <summary>
+        /// Performs an implicit conversion from <see cref="TempFile"/> to <see cref="System.String"/>.
+        /// </summary>
+        /// <param name="self">The <see cref="TempFile"/> object.</param>
+        /// <returns>
+        /// The fill path to the temp file.
+        /// </returns>
+        public static implicit operator string(TempFile self)
+        {
+            return self.FullPath;
+        }
+
+        /// <summary>
         /// Removes the temporary file.
         /// </summary>
         public void Dispose()

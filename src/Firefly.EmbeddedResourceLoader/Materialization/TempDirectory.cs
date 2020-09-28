@@ -49,7 +49,11 @@
         /// <param name="resourcePathPrefix">Resource path prefix of resources to materialize. All resources with this prefix in their names will be extracted.</param>
         /// <param name="resources">The resources to materialize.</param>
         /// <param name="directoryRenames">Array of renames for directories in resource path.</param>
-        internal TempDirectory(Assembly containingAssembly, string resourcePathPrefix, IEnumerable<string> resources, string[] directoryRenames)
+        internal TempDirectory(
+            Assembly containingAssembly,
+            string resourcePathPrefix,
+            IEnumerable<string> resources,
+            string[] directoryRenames)
             : this()
         {
             var index = resourcePathPrefix.Length;
@@ -57,7 +61,9 @@
             foreach (var resource in resources)
             {
                 // Caveat! Expect all resource files to have a file extension.
-                var filePath = Path.Combine(this.FullPath, ResourceNameToFilePath(resource.Substring(index), directoryRenames));
+                var filePath = Path.Combine(
+                    this.FullPath,
+                    ResourceNameToFilePath(resource.Substring(index), directoryRenames));
                 var fileDirectory = Path.GetDirectoryName(filePath);
 
                 if (!Directory.Exists(fileDirectory))
@@ -81,6 +87,18 @@
         /// The full path to the temporary directory.
         /// </value>
         public string FullPath { get; }
+
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="TempDirectory"/> to <see cref="System.String"/>.
+        /// </summary>
+        /// <param name="self">The <see cref="TempDirectory"/> object.</param>
+        /// <returns>
+        /// The fill path to the temp file.
+        /// </returns>
+        public static implicit operator string(TempDirectory self)
+        {
+            return self.FullPath;
+        }
 
         /// <summary>
         /// Removes the temporary directory and all its content.
@@ -114,7 +132,8 @@
             {
                 if (directoryRenames.Length % 2 != 0)
                 {
-                    throw new ArgumentException("DirectoryRenames property of EmbeddedResouceAttribute must have an even number of elements");
+                    throw new ArgumentException(
+                        "DirectoryRenames property of EmbeddedResouceAttribute must have an even number of elements");
                 }
 
                 // While we have the resource name split to parts
