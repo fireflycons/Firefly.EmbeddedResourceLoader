@@ -97,5 +97,14 @@
 
             GetAsString(this.fixture.Resources.TempDirectory).Should().Be(this.fixture.Resources.TempDirectory.FullPath);
         }
+
+        /// <summary>
+        /// Verifies a TemFile resource with PreserveExtension does preserve the extension
+        /// </summary>
+        [Fact]
+        public void TempFileWithPreserveExtensionShouldHaveCorrectExtension()
+        {
+            Path.GetExtension(this.fixture.Resources.XmlFileWithExtension).Should().Be(".xml");
+        }
     }
 }

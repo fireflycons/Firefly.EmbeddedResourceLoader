@@ -295,6 +295,24 @@
                         continue;
                     }
 
+                    // Handle TempFile as a special case so we can preserve file extension
+                    if (member.TargetType == typeof(TempFile))
+                    {
+                        using (var stream = GetResourceStream(attr))
+                        {
+                            var extension = ".tmp";
+
+                            if (attr.PreserveFileExtension)
+                            {
+                                extension = Path.GetExtension(attr.ResourcePath);
+                            }
+
+                            member.SetValue(new TempFile(stream, extension));
+                        }
+
+                        continue;
+                    }
+
                     // Handle TempDirectory as a special case since we cannot get resource data for a resource 'directory'
                     if (member.TargetType == typeof(TempDirectory))
                     {

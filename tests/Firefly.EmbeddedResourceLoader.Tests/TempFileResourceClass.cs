@@ -22,12 +22,16 @@
         [EmbeddedResource("TempDirectoryWithHyphen", DirectoryRenames = new[] { "hyphenated_directory", "hyphenated-directory" })]
         public TempDirectory HyphenatedDirectoryWithRename { get; set; }
 
+        [EmbeddedResource("XmlTestData.xml", PreserveFileExtension = true)]
+        public TempFile XmlFileWithExtension { get; set; }
+
         public void Dispose()
         {
             this.FileResource?.Dispose();
             this.TempDirectory?.Dispose();
             this.HyphenatedDirectory?.Dispose();
             this.HyphenatedDirectoryWithRename?.Dispose();
+            this.XmlFileWithExtension?.Dispose();
         }
     }
 }

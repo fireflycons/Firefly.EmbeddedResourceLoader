@@ -13,9 +13,10 @@
         /// Initializes a new instance of the <see cref="TempFile"/> class.
         /// </summary>
         /// <param name="resourceData">The resource data to copy to the file.</param>
-        public TempFile(Stream resourceData)
+        /// <param name="fileExtension">File extension to use for the temp file.</param>
+        public TempFile(Stream resourceData, string fileExtension = ".tmp")
         {
-            this.FullPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".tmp");
+            this.FullPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + fileExtension);
 
             using (var fs = File.OpenWrite(this.FullPath))
             {

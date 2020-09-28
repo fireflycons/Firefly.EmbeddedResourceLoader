@@ -81,6 +81,17 @@
         public string[] DirectoryRenames { get; set; }
 
         /// <summary>
+        /// <para>
+        /// Gets or sets file extension preservation for the <see cref="TempFile"/> resource.
+        /// If set, then the extension of the fi,e in the resource manifest is preserved; else the file gets a <c>.tmp</c> extension.
+        /// </para>
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> to preserve file extension] otherwise, <c>false</c>.
+        /// </value>
+        public bool PreserveFileExtension { get; set; }
+
+        /// <summary>
         /// Gets the containing assembly, that is, the assembly that is expected to contain the embedded resource.
         /// </summary>
         /// <value>
