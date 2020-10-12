@@ -140,6 +140,53 @@
         }
 
         /// <summary>
+        /// Gets a resource's content as a <see cref="TempFile"/>. The caller is responsible for disposal.
+        /// </summary>
+        /// <param name="partialResourcePath">The partial resource path.</param>
+        /// <param name="preserveExtension">if set to <c>true</c> preserve the file extension of the resource.</param>
+        /// <param name="containingAssembly">The assembly containing the requested resource.</param>
+        /// <returns>A new <see cref="TempFile"/> containing the resource content.</returns>
+        public static TempFile GetFileResource(string partialResourcePath, bool preserveExtension, Assembly containingAssembly)
+        {
+            return preserveExtension
+                       ? new TempFile(
+                           GetResourceStream(partialResourcePath, containingAssembly),
+                           "." + partialResourcePath.Split('.').Last())
+                       : new TempFile(GetResourceStream(partialResourcePath, containingAssembly));
+        }
+
+        /// <summary>
+        /// <para>
+        /// Gets a resource's content as a <see cref="TempFile"/>. The caller is responsible for disposal.
+        /// </para>
+        /// <para>
+        /// The resource is assumed to be in the assembly containing the code that calls this method.
+        /// </para>
+        /// </summary>
+        /// <param name="partialResourcePath">The partial resource path.</param>
+        /// <param name="preserveExtension">if set to <c>true</c> preserve the file extension of the resource.</param>
+        /// <returns>A new <see cref="TempFile"/> containing the resource content.</returns>
+        public static TempFile GetFileResource(string partialResourcePath, bool preserveExtension)
+        {
+            return GetFileResource(partialResourcePath, preserveExtension, Assembly.GetCallingAssembly());
+        }
+
+        /// <summary>
+        /// <para>
+        /// Gets a resource's content as a <see cref="TempFile"/>. The caller is responsible for disposal.
+        /// </para>
+        /// <para>
+        /// The file extension of the temporary file will be <c>.tmp</c> and the resource is assumed to be in the assembly containing the code that calls this method.
+        /// </para>
+        /// </summary>
+        /// <param name="partialResourcePath">The partial resource path.</param>
+        /// <returns>A new <see cref="TempFile"/> containing the resource content.</returns>
+        public static TempFile GetFileResource(string partialResourcePath)
+        {
+            return GetFileResource(partialResourcePath, false, Assembly.GetCallingAssembly());
+        }
+
+        /// <summary>
         /// Reads the resource stream into a string.
         /// </summary>
         /// <param name="resourceStream">The resource stream returned by <see cref="ResourceLoader.GetResourceStream(string, Assembly)"/>.</param>

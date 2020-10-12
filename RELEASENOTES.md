@@ -1,3 +1,7 @@
+# 0.1.4
+
+* Enhancement - Provide TempFile resources as a method so can be used in using blocks.
+
 # 0.1.3
 
 * Enhancement - TempFile and TempDirectory should have string casts, so they can be used directly in mathods that take a string path (e.g.System.IO).

@@ -106,5 +106,20 @@
         {
             Path.GetExtension(this.fixture.Resources.XmlFileWithExtension).Should().Be(".xml");
         }
+
+        [Fact]
+        public void GetFileResourceCreatesTempFile()
+        {
+            using var tempFile = ResourceLoader.GetFileResource("test.yaml");
+
+            File.Exists(tempFile).Should().BeTrue();
+        }
+
+        [Fact]
+        public void GetFileResourceWithPreserveExtensionCreatesTempFileWithCorrectExtension()
+        {
+            using var tempFile = ResourceLoader.GetFileResource("test.yaml", true);
+            Path.GetExtension(tempFile).Should().Be(".yaml");
+        }
     }
 }
