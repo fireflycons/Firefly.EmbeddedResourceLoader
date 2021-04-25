@@ -1,3 +1,7 @@
+# 0.1.5
+
+* Enhancement - Add SourceLink Support. [Issue link](https://github.com/fireflycons/Firefly.EmbeddedResourceLoader/issues/5)
+
 # 0.1.4
 
 * Enhancement - Provide TempFile resources as a method so can be used in using blocks.
