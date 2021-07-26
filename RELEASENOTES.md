@@ -1,3 +1,6 @@
+# 0.1.6
+
+* Enhancement - Provide alternate constructors for TempFile. [Issue link](https://github.com/fireflycons/Firefly.EmbeddedResourceLoader/issues/6)
 # 0.1.5
 
 * Enhancement - Add SourceLink Support. [Issue link](https://github.com/fireflycons/Firefly.EmbeddedResourceLoader/issues/5)
