@@ -77,6 +77,51 @@ public static class StaticResourceLoadedClass
 ResourceLoader.LoadResources(typeof(StaticResourceLoadedClass));
 ```
 
+Materializing a file...
+
+
+```csharp
+public class FileLoadingClass: AutoResourceLoader, IDisposable
+{
+	[EmbeddedResource('XmlDocument.xml')]
+	private TempFile myFile { get; set; }
+
+	void SomeMethodThatUsesTheFile()
+	{
+		var pathToFile = myFile.FullPath;
+		...
+	}
+
+	public void Dispose()
+	{
+		// Clean up the file
+		myFile?.Dispose();
+	}
+}
+```
+
+Materializing a directory structure
+
+```csharp
+public class DirectoryLoadingClass: AutoResourceLoader, IDisposable
+{
+	[EmbeddedResource('Resources')]		// Get all embedded resources below this project folder.
+	private TempDirectory myDir { get; set; }
+
+	void SomeMethodThatUsesTheFiles()
+	{
+		var pathToFiles = myDir.FullPath;
+		...
+	}
+
+	public void Dispose()
+	{
+		// Delete the directory structure
+		myDir?.Dispose();
+	}
+}
+```
+
 # Examples in Other Repositories
 
 You can see this library in action in the unit test projects in my other repositories
