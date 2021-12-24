@@ -187,7 +187,7 @@
         }
 
         /// <summary>
-        /// Reads the resource stream into a string.
+        /// Reads a resource stream into a string.
         /// </summary>
         /// <param name="resourceStream">The resource stream returned by <see cref="ResourceLoader.GetResourceStream(string, Assembly)"/>.</param>
         /// <returns>String containing resource data.</returns>
@@ -197,6 +197,30 @@
             {
                 return sr.ReadToEnd();
             }
+        }
+
+        /// <summary>
+        /// Reads a resource in the specified assembly into a string.
+        /// </summary>
+        /// <param name="partialResourcePath">The partial resource path.</param>
+        /// <param name="containingAssembly">The assembly containing the resource.</param>
+        /// <returns>String containing resource data.</returns>
+        public static string GetStringResource(string partialResourcePath, Assembly containingAssembly)
+        {
+            using (var sr = new StreamReader(GetResourceStream(partialResourcePath, containingAssembly)))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+
+        /// <summary>
+        /// Reads a resource from the assembly containing the method that calls this overload into a string.
+        /// </summary>
+        /// <param name="partialResourcePath">The partial resource path.</param>
+        /// <returns>String containing resource data.</returns>
+        public static string GetStringResource(string partialResourcePath)
+        {
+            return GetStringResource(partialResourcePath, Assembly.GetCallingAssembly());
         }
 
         /// <summary>

@@ -1,6 +1,11 @@
+# 0.1.7
+
+* Enhancement - Add a couple of more useful methods for acquiring string resources
+
 # 0.1.6
 
 * Enhancement - Provide alternate constructors for TempFile. [Issue link](https://github.com/fireflycons/Firefly.EmbeddedResourceLoader/issues/6)
+
 # 0.1.5
 
 * Enhancement - Add SourceLink Support. [Issue link](https://github.com/fireflycons/Firefly.EmbeddedResourceLoader/issues/5)
